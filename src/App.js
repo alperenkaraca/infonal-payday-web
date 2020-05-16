@@ -23,7 +23,7 @@ const App = ({ isAuthenticated }) => {
           path={routeMap.login.path}
           isAuthenticated={isAuthenticated}
           component={routeMap.login.component}
-          redirectingPath={routeMap.Profile.path}
+          redirectingPath={routeMap.ProfilePage.path}
         />
         {routes
           .filter((route) => route.private === true)

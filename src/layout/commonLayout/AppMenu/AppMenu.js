@@ -2,6 +2,7 @@ import './AppMenu.scss'
 
 import React from 'react'
 import { Menu, Layout } from 'antd'
+import { Link } from 'react-router-dom'
 const { Sider } = Layout;
 
 const AppMenu = () => {
@@ -10,15 +11,14 @@ const AppMenu = () => {
             <Sider width={200} className="site-layout-background">
                 <Menu
                     style={{ width: 256, height: '100%' }}
-                    defaultSelectedKeys={['1']}
                     mode="inline"
                     theme="dark">
                     <Menu.Item key="1">
-                        Products
-                </Menu.Item>
+                        <Link to="/product" className="nav-text">Products</Link>
+                    </Menu.Item>
                     <Menu.Item key="2">
-                        Profile
-                </Menu.Item>
+                        <Link to="/profile" className="nav-text">Profile</Link>
+                    </Menu.Item>
                 </Menu>
             </Sider>
         </React.Fragment>

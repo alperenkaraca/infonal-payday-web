@@ -1,11 +1,19 @@
 import LoginPage from './pages/LoginPage'
-import Profile from './pages/Products'
+import ProductPage from './pages/ProductPage'
+import ProfilePage from './pages/ProfilePage'
 
 const routeMap = {
-  Profile: {
+  ProductPage: {
     private: true,
-    path: '/',
-    component: Profile,
+    path: '/product',
+    component: ProductPage,
+    disableHeader: false,
+    disableMenu: false,
+  },
+  ProfilePage: {
+    private: true,
+    path: '/profile',
+    component: ProfilePage,
     disableHeader: false,
     disableMenu: false,
   },
