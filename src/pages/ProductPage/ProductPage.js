@@ -2,7 +2,7 @@ import './ProductPage.scss'
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { Table, Checkbox, Modal, Form, Button, Input } from 'antd';
+import { Table, Checkbox, Modal, Form, Button, Input, InputNumber } from 'antd';
 import { getProducts, updateProductInfo } from '../../services/redux/actions'
 
 const columns = [
@@ -10,7 +10,6 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: text => <a>{text}</a>,
     sorter: (a, b) => a.name - b.name,
   },
   {
@@ -90,7 +89,7 @@ class ProductPage extends React.Component {
       <React.Fragment>
         <Modal
           destroyOnClose={true}
-          title="Basic Modal"
+          title="Product Details"
           visible={this.state.visible}
           footer={null}
           onCancel={this.handleCancel}
@@ -113,9 +112,9 @@ class ProductPage extends React.Component {
               label="Price">
               {getFieldDecorator('price', {
                 initialValue: record != null ? record.price : null,
-                rules: [{ required: true, message: 'Please input your price address!' }],
+                rules: [{ required: true, message: 'Please input your price!' }],
               })(
-                <Input
+                <InputNumber
                   placeholder="Price"
                 />)}
             </Form.Item>
@@ -143,7 +142,7 @@ class ProductPage extends React.Component {
                 type="primary"
                 htmlType="submit"
                 className="login-form-button"
-                style={{marginLeft:'30%'}}
+                style={{ marginLeft: '30%' }}
               >
                 Save
             </Button>
