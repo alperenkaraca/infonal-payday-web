@@ -3,7 +3,7 @@ import './AppHeader.scss'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Layout, Button, Row, Col } from 'antd'
-import { logout } from '../../../services/auth/actions'
+import { logout } from '../../../services/redux/actions'
 const { Header } = Layout
 
 const AppHeader = ({ loggingOut, logout }) => (
