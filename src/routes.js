@@ -19,7 +19,7 @@ const routeMap = {
   },
   login: {
     private: false,
-    path: '/login',
+    path: '/',
     component: LoginPage,
   },
 }
