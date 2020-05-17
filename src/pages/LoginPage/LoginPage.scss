@@ -1,9 +1,42 @@
-#loginPageForm {
-  max-width: 300px;
-  position: relative;
-  left: 40%;
-  top: 30%;
-  .login-form-button {
-    width: 100%;
+$break-small: 320px;
+$break-large: 1024px;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+  @else if $media == normal-screens{
+    @media only screen and (min-width: $break-large) { @content; }
   }
 }
+
+#loginPageForm {
+  @include respond-to(handhelds) { 
+    top:40%;
+    position: relative;
+  }
+  @include respond-to(medium-screens) { 
+    position: relative;
+    top: 30%;
+    .login-form-button {
+      width: 100%;
+    }
+   }
+  @include respond-to(wide-screens) { 
+    position: relative;
+    top: 30%;
+    left:25%;
+    width:50%;
+    .login-form-button {
+      width: 100%;
+    }
+   }
+
+  }
+  

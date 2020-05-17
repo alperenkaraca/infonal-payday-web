@@ -8,9 +8,11 @@ const { Sider } = Layout;
 const AppMenu = () => {
     return (
         <React.Fragment>
-            <Sider width={200} className="site-layout-background">
+            <Sider breakpoint="xs"
+                collapsedWidth="0"
+                className="site-layout-background">
                 <Menu
-                    style={{ width: 256, height: '100%' }}
+                    style={{height: '100%' }}
                     mode="inline"
                     theme="dark">
                     <Menu.Item key="1">

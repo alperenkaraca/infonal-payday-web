@@ -10,18 +10,21 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
+    responsive: ['md'],
     sorter: (a, b) => a.name - b.name,
   },
   {
     title: 'Price',
     dataIndex: 'price',
     key: 'price',
+    responsive: ['md'],
     sorter: (a, b) => a.price - b.price,
   },
   {
     title: 'Currently Available',
     dataIndex: 'available',
     key: 'available',
+    responsive: ['md'],
     render: text => <Checkbox disabled checked={text} />,
   }
 ];
