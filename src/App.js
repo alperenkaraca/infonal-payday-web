@@ -42,7 +42,7 @@ const App = ({ isAuthenticated }) => {
 }
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
+  isAuthenticated: state.reducer.isAuthenticated,
 })
 
 export default connect(mapStateToProps)(App)

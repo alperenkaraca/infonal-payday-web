@@ -3,7 +3,7 @@ import './LoginPage.scss'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Icon, Input, Button } from 'antd'
-import { requestLogin } from '../../services/auth/actions'
+import { requestLogin } from '../../services/redux/actions'
 
 const LoginPage = ({ form, loggingIn, requestLogin }) => {
   const handleSubmit = (e) => {
@@ -55,7 +55,7 @@ const LoginPage = ({ form, loggingIn, requestLogin }) => {
 }
 
 const mapStateToProps = (state) => ({
-  loggingIn: state.authReducer.loggingIn,
+  loggingIn: state.reducer.loggingIn,
 })
 
 const mapDispatchToProps = {

@@ -1,4 +1,4 @@
-import types from '../auth/action-types'
+import types from './action-types'
 import { notification } from 'antd'
 
 const initialState = {

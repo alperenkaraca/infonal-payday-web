@@ -3,7 +3,7 @@ import './ProfilePage.scss'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Input, Button } from 'antd'
-import { getUserInfo, updateUserInfo } from '../../services/auth/actions'
+import { getUserInfo, updateUserInfo } from '../../services/redux/actions'
 
 class ProfilePage extends React.Component {
 
@@ -82,7 +82,7 @@ class ProfilePage extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-  userInfo: state.authReducer.userInfo,
+  userInfo: state.reducer.userInfo,
 })
 
 const mapDispatchToProps = {

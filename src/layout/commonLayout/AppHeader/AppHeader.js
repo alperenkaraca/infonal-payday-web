@@ -26,7 +26,7 @@ const AppHeader = ({ loggingOut, logout }) => (
 )
 
 const mapStateToProps = (state) => ({
-  loggingOut: state.authReducer.loggingOut,
+  loggingOut: state.reducer.loggingOut,
 })
 
 const mapDispatchToProps = {

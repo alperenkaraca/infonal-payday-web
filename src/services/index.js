@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import authReducer from './auth/reducer'
+import reducer from './redux/reducer'
 
-import authSaga from './auth/saga'
+import saga from './redux/saga'
 
 export const combinedReducers = combineReducers({
-  authReducer,
+  reducer,
 })
 
-export const sagas = [authSaga]
+export const sagas = [saga]

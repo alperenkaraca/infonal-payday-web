@@ -3,7 +3,7 @@ import './ProductPage.scss'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Table, Checkbox, Modal, Form, Button, Input } from 'antd';
-import { getProducts, updateProductInfo } from '../../services/auth/actions'
+import { getProducts, updateProductInfo } from '../../services/redux/actions'
 
 const columns = [
   {
@@ -166,7 +166,7 @@ class ProductPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  products: state.authReducer.products,
+  products: state.reducer.products,
 })
 
 const mapDispatchToProps = {
