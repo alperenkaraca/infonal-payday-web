@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import types from './action-types'
-import { successLogin, failLogin, loggedOut } from './actions'
+import { successLogin, failLogin, loggedOut, successGetProducts, successGetUserInfo, failGetProducts, failGetUserInfo, successUpdateUserInfo, failUpdateUserInfo } from './actions'
 import API from './api'
 
 const setTokenToLocalStorage = (accessToken, tokenType) => {
@@ -14,7 +14,7 @@ const removeTokenFromLocalStorage = () => {
 function* requestLogin({ username, password }) {
   try {
     const loginInfo = {
-      username, 
+      username,
       password
     }
     const { accessToken, tokenType } = yield call(API.fetchLogin, loginInfo)
@@ -48,8 +48,61 @@ function* checkAuthentication({ token }) {
   }
 }
 
+function* getProducts() {
+  try {
+    const token = localStorage.getItem('accessToken')
+    const request = {
+      headers: {
+        Authorization: token
+      }
+    }
+    const data = yield call(API.fetchProducts, request);
+    yield put(successGetProducts(data))
+  } catch (error) {
+    console.error('ERROR:', error)
+    yield put(failGetProducts(error))
+  }
+}
+
+function* getUserInfo() {
+  try {
+    const token = localStorage.getItem('accessToken')
+    const request = {
+      headers: {
+        Authorization: token
+      }
+    }
+    const data = yield call(API.fetchUserInfo, request);
+    yield put(successGetUserInfo(data))
+  } catch (error) {
+    console.error('ERROR:', error)
+    yield put(failGetUserInfo(error))
+  }
+}
+
+function* postUserInfo(action) {
+  try {
+    const token = localStorage.getItem('accessToken');
+    const { data } = action;
+    const requestHeaders = {
+      headers: {
+        Authorization: token
+      }
+    }
+    yield call(API.fetchUpdateUserInfo, data, requestHeaders);
+    yield put(loggedOut())
+    removeTokenFromLocalStorage()
+  } catch (error) {
+    console.error('ERROR:', error)
+    yield put(failUpdateUserInfo(error))
+  }
+}
+
 export default function* authSaga() {
   yield takeLatest(types.REQUEST_LOGIN, requestLogin)
   yield takeLatest(types.CHECK_AUTHENTICATION, checkAuthentication)
   yield takeLatest(types.LOGOUT, logout)
+  yield takeLatest(types.GET_PRODUCTS, getProducts)
+  yield takeLatest(types.GET_USER_INFO, getUserInfo)
+  yield takeLatest(types.UPDATE_USER_INFO, postUserInfo)
 }

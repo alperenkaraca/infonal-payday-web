@@ -6,6 +6,8 @@ const initialState = {
   expireTime: undefined,
   loggingIn: false,
   loggingOut: false,
+  products: [],
+  userInfo: []
 }
 
 export default (state = initialState, action) => {
@@ -40,7 +42,34 @@ export default (state = initialState, action) => {
       return {
         state: { ...initialState },
       }
-
+    case types.SUCCESS_GET_PRODUCTS:
+      return {
+        ...state,
+        products: action.data,
+      }
+    case types.FAIL_GET_PRODUCTS:
+      return {
+        ...state,
+      }
+    case types.SUCCESS_GET_USER_INFO:
+      return {
+        ...state,
+        userInfo: action.data,
+      }
+    case types.FAIL_GET_USER_INFO:
+      return {
+        ...state,
+      }
+    case types.SUCCESS_UPDATE_USER_INFO:
+      debugger
+      return {
+        ...state,
+        userInfo: action.data,
+      }
+    case types.FAIL_UPDATE_USER_INFO:
+      return {
+        ...state,
+      }
     default:
       return state
   }

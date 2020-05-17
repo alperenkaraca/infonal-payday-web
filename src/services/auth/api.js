@@ -1,7 +1,8 @@
 import axios from 'axios'
-import {LOGIN_REQUEST} from './constants'
+import types from './constants'
+
 const fetchLogin = (loginInfo) => {
-  return axios.post(LOGIN_REQUEST,loginInfo).then(function(response) {
+  return axios.post(types.LOGIN_REQUEST,loginInfo).then(function(response) {
     return response.data
   })
 }
@@ -23,8 +24,29 @@ const checkAuthentication = (token) => {
   )
 }
 
+const fetchProducts = (token) => {
+  return axios.get(types.GET_PRODUCTS,token).then(function(response) {
+    return response.data
+  })
+}
+
+const fetchUserInfo = (token) => {
+  return axios.get(types.GET_USER_INFO,token).then(function(response) {
+    return response.data
+  })
+}
+
+const fetchUpdateUserInfo = (data,token) => {
+  return axios.post(types.UPDATE_USER_INFO,data,token).then(function(response) {
+    return response.data
+  })
+}
+
 export default {
   fetchLogin,
   checkAuthentication,
   fetchLogout,
+  fetchProducts,
+  fetchUserInfo,
+  fetchUpdateUserInfo
 }

@@ -47,3 +47,61 @@ export const checkAuthentication = () => {
     token,
   }
 }
+
+export const getProducts = () => {
+  return {
+    type: types.GET_PRODUCTS,
+  }
+}
+
+export const successGetProducts = (data) => {
+  return {
+    type: types.SUCCESS_GET_PRODUCTS,
+    data
+  }
+}
+
+export const failGetProducts = () => {
+  return {
+    type: types.FAIL_GET_PRODUCTS,
+  }
+}
+
+export const getUserInfo = () => {
+  return {
+    type: types.GET_USER_INFO,
+  }
+}
+
+export const successGetUserInfo = (data) => {
+  return {
+    type: types.SUCCESS_GET_USER_INFO,
+    data
+  }
+}
+
+export const failGetUserInfo = () => {
+  return {
+    type: types.FAIL_GET_USER_INFO,
+  }
+}
+
+export const updateUserInfo = (data) => {
+  return {
+    type: types.UPDATE_USER_INFO,
+    data
+  }
+}
+
+export const successUpdateUserInfo = (data) => {
+  return {
+    type: types.SUCCESS_UPDATE_USER_INFO,
+    data
+  }
+}
+
+export const failUpdateUserInfo = () => {
+  return {
+    type: types.FAIL_UPDATE_USER_INFO,
+  }
+}
