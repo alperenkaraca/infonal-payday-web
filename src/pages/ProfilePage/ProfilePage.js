@@ -10,9 +10,9 @@ class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username:"",
-      email:"",
-      title:"",
+      username: "",
+      email: "",
+      title: "",
     }
   }
 
@@ -37,7 +37,7 @@ class ProfilePage extends React.Component {
         <Form.Item
           label="Username">
           {getFieldDecorator('username', {
-            initialValue: userInfo != null ? userInfo.username : null ,
+            initialValue: userInfo != null ? userInfo.username : null,
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
             <Input
@@ -47,10 +47,11 @@ class ProfilePage extends React.Component {
         <Form.Item
           label="E-Mail">
           {getFieldDecorator('email', {
-            initialValue: userInfo !=null ? userInfo.email : null,
+            initialValue: userInfo != null ? userInfo.email : null,
             rules: [{ required: true, message: 'Please input your email address!' }],
           })(
             <Input
+              disabled
               placeholder="E-Mail"
             />)}
         </Form.Item>

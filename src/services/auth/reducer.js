@@ -61,15 +61,44 @@ export default (state = initialState, action) => {
         ...state,
       }
     case types.SUCCESS_UPDATE_USER_INFO:
-      debugger
+      notification.success({
+        message: 'User Info',
+        description:
+          'Update successful.',
+      });
       return {
         ...state,
         userInfo: action.data,
       }
     case types.FAIL_UPDATE_USER_INFO:
+      notification.error({
+        message: 'User Info',
+        description:
+          'Update fail.',
+      });
       return {
         ...state,
       }
+
+      case types.SUCCESS_UPDATE_PRODUCT_INFO:
+        notification.success({
+          message: 'Product Info',
+          description:
+            'Update successful.',
+        });
+        return {
+          ...state,
+          products: action.data,
+        }
+      case types.FAIL_UPDATE_PRODUCT_INFO:
+        notification.error({
+          message: 'Product Info',
+          description:
+            'Update fail.',
+        });
+        return {
+          ...state,
+        }
     default:
       return state
   }

@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import types from './action-types'
-import { successLogin, failLogin, loggedOut, successGetProducts, successGetUserInfo, failGetProducts, failGetUserInfo, successUpdateUserInfo, failUpdateUserInfo } from './actions'
+import { successLogin, failLogin, loggedOut, successGetProducts, successGetUserInfo, failGetProducts, failGetUserInfo, failUpdateUserInfo, successUpdateUserInfo, successUpdateProductInfo } from './actions'
 import API from './api'
 
 const setTokenToLocalStorage = (accessToken, tokenType) => {
@@ -28,7 +28,7 @@ function* requestLogin({ username, password }) {
 
 function* logout({ token }) {
   try {
-    const { status } = yield call(API.fetchLogout, token)
+    yield call(API.fetchLogout, token)
     yield put(loggedOut())
     removeTokenFromLocalStorage()
   } catch (error) {
@@ -89,14 +89,31 @@ function* postUserInfo(action) {
         Authorization: token
       }
     }
-    yield call(API.fetchUpdateUserInfo, data, requestHeaders);
-    yield put(loggedOut())
-    removeTokenFromLocalStorage()
+    const response = yield call(API.fetchUpdateUserInfo, data, requestHeaders);
+    yield put(successUpdateUserInfo(response))
   } catch (error) {
     console.error('ERROR:', error)
     yield put(failUpdateUserInfo(error))
   }
 }
+
+function* postProductInfo(action) {
+  try {
+    const token = localStorage.getItem('accessToken');
+    const { data } = action;
+    const requestHeaders = {
+      headers: {
+        Authorization: token
+      }
+    }
+    const response = yield call(API.fetchUpdateProductInfo, data, requestHeaders);
+    yield put(successUpdateProductInfo(response))
+  } catch (error) {
+    console.error('ERROR:', error)
+    yield put(failUpdateUserInfo(error))
+  }
+}
+
 
 export default function* authSaga() {
   yield takeLatest(types.REQUEST_LOGIN, requestLogin)
@@ -105,4 +122,5 @@ export default function* authSaga() {
   yield takeLatest(types.GET_PRODUCTS, getProducts)
   yield takeLatest(types.GET_USER_INFO, getUserInfo)
   yield takeLatest(types.UPDATE_USER_INFO, postUserInfo)
+  yield takeLatest(types.UPDATE_PRODUCT_INFO, postProductInfo)
 }

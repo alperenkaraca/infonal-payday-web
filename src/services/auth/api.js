@@ -42,11 +42,18 @@ const fetchUpdateUserInfo = (data,token) => {
   })
 }
 
+const fetchUpdateProductInfo = (data,token) => {
+  return axios.post(types.UPDATE_PRODUCT_INFO,data,token).then(function(response) {
+    return response.data
+  })
+}
+
 export default {
   fetchLogin,
   checkAuthentication,
   fetchLogout,
   fetchProducts,
   fetchUserInfo,
-  fetchUpdateUserInfo
+  fetchUpdateUserInfo,
+  fetchUpdateProductInfo
 }

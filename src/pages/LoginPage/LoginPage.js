@@ -10,9 +10,8 @@ const LoginPage = ({ form, loggingIn, requestLogin }) => {
     e.preventDefault()
     form.validateFields((err, values) => {
       if (!err) {
-        const { username, password } = values
-        console.log('Received values of form: ', values)
-        requestLogin(username, password)
+        const { email, password } = values
+        requestLogin(email, password)
       }
     })
   }
@@ -21,12 +20,12 @@ const LoginPage = ({ form, loggingIn, requestLogin }) => {
   return (
     <Form id="loginPageForm" onSubmit={handleSubmit}>
       <Form.Item>
-        {getFieldDecorator('username', {
-          rules: [{ required: true, message: 'Please input your username!' }],
+        {getFieldDecorator('email', {
+          rules: [{ required: true, message: 'Please input your email!' }],
         })(
           <Input
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            placeholder="Username"
+            placeholder="E-Mail"
           />
         )}
       </Form.Item>

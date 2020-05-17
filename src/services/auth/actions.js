@@ -105,3 +105,23 @@ export const failUpdateUserInfo = () => {
     type: types.FAIL_UPDATE_USER_INFO,
   }
 }
+
+export const updateProductInfo = (data) => {
+  return {
+    type: types.UPDATE_PRODUCT_INFO,
+    data
+  }
+}
+
+export const successUpdateProductInfo = (data) => {
+  return {
+    type: types.SUCCESS_UPDATE_PRODUCT_INFO,
+    data
+  }
+}
+
+export const failUpdateProductInfo = () => {
+  return {
+    type: types.FAIL_UPDATE_PRODUCT_INFO,
+  }
+}
